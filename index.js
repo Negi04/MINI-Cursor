@@ -109,11 +109,16 @@ async function buildWebsite(){
           ],
         });
     }else{
-        console.log(response.text);
-        History.push({
-            role:'model',
-            parts:[{text:response.text}]
-        })
+      const responseText = response.text; 
+            if (responseText) {
+                console.log("AI:", responseText);
+                History.push({
+                    role: "model",
+                    parts: [{ text: responseText }]
+                });
+            } else {
+                console.error("Error: API returned empty response");
+            }
         break;
     }
 }
